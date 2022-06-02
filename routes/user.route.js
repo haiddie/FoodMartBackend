@@ -62,7 +62,7 @@ userRoute.route('/update-user/:id').put((req, res, next) => {
       return next(err);
     } else {
       res.json(user)
-      console.log('User updated!')
+      console.log('User updated!',user)
     }
   })
 })
