@@ -6,9 +6,6 @@ const database = require('./db/database');
 // MongoDB connection 
 mongoose.Promise = global.Promise;
 mongoose.connect(database.db, {
-  useNewUrlParser: true,
-    useCreateIndex: true,
-    useUnifiedTopology: true
 }).then(() => {
   console.log('Database connected ')
 },
