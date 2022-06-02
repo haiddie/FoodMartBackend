@@ -56,8 +56,8 @@ userRoute.route('/fetch-user/:id').get((req, res) => {
 
 userRoute.route('/update-user/:id').put((req, res, next) => {
   UserModel.findByIdAndUpdate(req.params.id, {
-    $set: req.body
-  }, (err, user) => {
+    $set: req.body ,
+  }, { new: true }, (err, user) => {
     if (err) {
       return next(err);
     } else {
