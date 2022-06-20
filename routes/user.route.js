@@ -104,6 +104,34 @@ userRoute.route('/get-categories').get((req, res) => {
   })
 });
 
+
+userRoute.route('/update-category/:id').put((req, res, next) => {
+  CategoryModel.findByIdAndUpdate(req.params.id, {
+    $set: req.body ,
+  }, { new: true }, (err, category) => {
+    if (err) {
+      return next(err);
+    } else {
+      res.json(category)
+      console.log('Category updated!',category)
+    }
+  })
+})
+
+
+userRoute.route('/delete-category/:id').delete((req, res, next) => {
+  CategoryModel.findByIdAndRemove(req.params.id, (error, category) => {
+    if (error) {
+      return next(error);
+    } else {
+      res.status(200).json({
+        msg: category
+      })
+      console.log('Category deleted!')
+    }
+  })
+})
+
 /* Restaurant Routes */
 userRoute.route('/create-restaurant').post((req, res, next) => {
   console.log('req',req)
