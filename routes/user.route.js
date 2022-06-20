@@ -156,4 +156,32 @@ userRoute.route('/get-restaurants').get((req, res) => {
   })
 });
 
+
+userRoute.route('/update-restaurant/:id').put((req, res, next) => {
+  RestaurantModel.findByIdAndUpdate(req.params.id, {
+    $set: req.body ,
+  }, { new: true }, (err, restaurant) => {
+    if (err) {
+      return next(err);
+    } else {
+      res.json(restaurant)
+      console.log('Restaurant updated!',restaurant)
+    }
+  })
+})
+
+
+userRoute.route('/delete-restaurant/:id').delete((req, res, next) => {
+  RestaurantModel.findByIdAndRemove(req.params.id, (error, restaurant) => {
+    if (error) {
+      return next(error);
+    } else {
+      res.status(200).json({
+        msg: restaurant
+      })
+      console.log('Restaurant deleted!')
+    }
+  })
+})
+
 module.exports = userRoute;
