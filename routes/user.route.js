@@ -157,6 +157,18 @@ userRoute.route('/get-restaurants').get((req, res) => {
 });
 
 
+userRoute.route('/get-restaurant/:id').get((req, res) => {
+  RestaurantModel.findById(req.params.id, (err, restaurant) => {
+    if (err) {
+      return next(err)
+    } else {
+      res.json(restaurant)
+      console.log('Restaurant retrieved!')
+    }
+  })
+});
+
+
 userRoute.route('/update-restaurant/:id').put((req, res, next) => {
   RestaurantModel.findByIdAndUpdate(req.params.id, {
     $set: req.body ,

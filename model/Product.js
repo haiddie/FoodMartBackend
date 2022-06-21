@@ -1,14 +1,20 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-let Restaurant = new Schema({
+let Product = new Schema({
   name: {
     type: String
   },
-  address:{
+  categoryID:{
      type:String
   },
+  restaurantID:{
+    type:String
+  },
   description:{
+    type:String
+  },
+  price:{
     type:String
   },
   img:{
@@ -18,7 +24,7 @@ let Restaurant = new Schema({
       type:Date,default: Date.now
   }
 }, {
-  collection: 'restaurants'
+  collection: 'products'
 })
 
-module.exports = mongoose.model('Restaurant', Restaurant)
+module.exports = mongoose.model('Product', Product)
